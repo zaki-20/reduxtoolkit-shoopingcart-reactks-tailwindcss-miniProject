@@ -4,7 +4,7 @@ import { BiArrowBack } from 'react-icons/bi'
 import { MdDelete } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { addToCart } from '../redux/features/cartSlice'
+import { addToCart, removeSingleItems, removeToCart } from '../redux/features/cartSlice'
 
 const CartDetails = () => {
   const dispatch = useDispatch()
@@ -15,6 +15,16 @@ const CartDetails = () => {
     dispatch(addToCart(e))
   }
 
+   // remove to cart
+   const handleDecrement = (e)=>{
+    dispatch(removeToCart(e));
+ 
+}
+
+ // remove single item 
+ const handleSingleDecrement = (e)=>{
+  dispatch(removeSingleItems(e))
+}
 
 
   return (
@@ -39,13 +49,13 @@ const CartDetails = () => {
                     </div>
                     <div className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
                       <div className="flex items-center border-gray-100">
-                        <span onClick={() => (handleIncrement(item))} className="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50"> - </span>
+                        <span onClick={() => (handleSingleDecrement(item))} className="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50"> - </span>
                         <input className="h-8 w-8 border bg-white text-center text-xs outline-none" value={item.qnty} />
                         <span onClick={() => (handleIncrement(item))} className="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50"> + </span>
                       </div>
                       <div className="flex items-center space-x-4">
                         <p className="text-sm">${item.price * item.qnty}</p>
-                        <MdDelete size={25} className='text-red-600' />
+                        <MdDelete onClick={()=>{handleDecrement(item.id)}} size={25} className='text-red-600' />
                       </div>
                     </div>
                   </div>
