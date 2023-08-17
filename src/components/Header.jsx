@@ -1,8 +1,13 @@
 import React from 'react'
 import { BsFillCartFill } from "react-icons/bs"
 import 'flowbite';
+import { useSelector } from 'react-redux';
+import { Link } from "react-router-dom"
 
 const Header = () => {
+    const { carts } = useSelector(state => state.allCart)
+    console.log(carts)
+
     return (
         <div>
 
@@ -10,14 +15,18 @@ const Header = () => {
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <a href="https://flowbite.com/" className="flex items-center">
                         <img src="https://flowbite.com/docs/images/logo.svg" className="h-8 mr-3" alt="Flowbite Logo" />
-                        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
+                        <Link to={'/'} >
+                        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Shooping Cart</span>
+                        </Link>
                     </a>
                     <div className="flex items-center md:order-2">
                         <button type="button" className="  mr-3 " id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                             <div className='relative inline-flex items-center text-sm font-medium text-center'>
-                                <BsFillCartFill className='' size={35} />
-                                <div class="absolute inline-flex items-center z-50 justify-center w-6 h-6 text-xs font-bold text-red bg-red-500 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900">20</div>
+                                <Link to={"/cart"}>
+                                    <BsFillCartFill className='' size={35} />
+                                </Link>
 
+                                <div class="absolute inline-flex items-center z-50 justify-center w-6 h-6 text-xs font-bold text-red bg-red-500 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900">{carts.length}</div>
                             </div>
 
                         </button>
