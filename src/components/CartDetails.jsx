@@ -74,7 +74,7 @@ const CartDetails = () => {
       <div className="h-screen bg-gray-100 pt-10">
         <h1 className="mb-10 text-center text-2xl font-bold">Cart Items</h1>
         {
-          carts.length === 0 ? "Your cart is empty" : ""
+          carts.length === 0 ? <span className='text-red-700 font-bold text-center'></span> : ""
         }
         <div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
           <div className="rounded-lg h-[500px] md:w-2/3 overflow-y-scroll">
