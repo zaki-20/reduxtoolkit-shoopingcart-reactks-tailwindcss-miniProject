@@ -3,6 +3,8 @@ import Cardsdata from './CardData'
 import { AiFillStar } from "react-icons/ai"
 import { addToCart } from '../redux/features/cartSlice'
 import { useDispatch } from 'react-redux';
+import toast from 'react-hot-toast';
+
 
 
 const Home = () => {
@@ -12,8 +14,8 @@ const Home = () => {
 
     //add to cart
     const send = (e) => {
-        console.log('first')
         dispatch(addToCart(e))
+        toast.success("item added to the cart!")
     }
 
     return (
